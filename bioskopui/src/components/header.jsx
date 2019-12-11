@@ -21,24 +21,24 @@ const Header = (props) => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">reactstrap</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem className='mr-2'>
-              <Link to={'/manageadmin'}>manageadmin</Link>
+          <Nav className="ml-auto " navbar>
+            <NavItem className=" mr-2 pt-2">
+              <Link to={'/manageadmin'} style={{textDecoration:"none",color:'#9a9da0'}}>Manage Admin</Link>
             </NavItem>
             {props.namauser===''?
               <NavItem>
-                <Link to={'/login'}>Login</Link>
+                <Link to={'/login'} style={{textDecoration:"none",color:'#9a9da0'}}>Login</Link>
               </NavItem>
-              :
-              null
-            }
-              {
-                props.namauser===''?
-                null
+            //   :
+            //   null
+            // }
+            //   {
+            //     props.namauser===''?
+            //     null
                 :
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
@@ -46,14 +46,14 @@ const Header = (props) => {
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
-                      Option 1
+                      View Profil
                     </DropdownItem>
                     <DropdownItem>
-                      Option 2
+                      View Cart
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>
-                      Reset
+                      Sign Out
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>

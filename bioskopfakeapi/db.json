@@ -43,13 +43,10 @@
       "durasi": "103",
       "produksi": "RANS ENTERTAINMENT",
       "jadwal": [
-        12,
-        14,
-        16,
-        20
+        12
       ],
       "trailer": "https://www.youtube.com/embed/z9CEIcmWmtA",
-      "studioId": "2",
+      "studioId": "1",
       "id": 2
     },
     {
@@ -92,9 +89,9 @@
       "id": 1,
       "userId": 2,
       "movieId": 3,
-      "jadwal":12,
+      "jadwal": 12,
       "totalHarga": 50000,
-      "bayar":false
+      "bayar": false
     },
     {
       "userId": 3,
@@ -102,7 +99,7 @@
       "jadwal": 12,
       "totalHarga": 50000,
       "id": 2,
-      "bayar":false
+      "bayar": false
     },
     {
       "userId": 2,
@@ -110,7 +107,7 @@
       "jadwal": 14,
       "totalHarga": 50000,
       "id": 3,
-      "bayar":false
+      "bayar": false
     }
   ],
   "ordersDetails": [
@@ -136,7 +133,7 @@
       "id": 4,
       "orderId": 2,
       "row": 2,
-      "seat":7
+      "seat": 7
     },
     {
       "id": 5,
@@ -148,7 +145,7 @@
       "id": 6,
       "orderId": 3,
       "row": 2,
-      "seat":9
+      "seat": 9
     }
   ]
 }
