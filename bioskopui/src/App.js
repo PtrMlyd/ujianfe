@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Header from './components/header'
-import Home from './pages/Home'
+import Home from './pages/home'
 import './App.css';
 import {Switch,Route} from 'react-router-dom'
-import ManageAdmin from './pages/manageadmin'
+import ManageAdmin from './pages/manageAdmin'
 import Login from './pages/login'
-import Moviedetail from './pages/movie-detail'
-import Belitiket from './pages/belitiket'
+import Moviedetail from './pages/movieDetail'
+import Belitiket from './pages/beliTiket'
+import register from './pages/register'
 import {connect} from 'react-redux'
 import {LoginSuccessAction} from './redux/actions'
 import Axios from 'axios';
@@ -43,11 +44,12 @@ class App extends Component{
           <Route path={'/'} exact>
             <Home/>
           </Route>
-          <Route path={'/manageadmin'} exact >
+          <Route path={'/manageAdmin'} exact >
             <ManageAdmin/>
           </Route>          
-          <Route path='/moviedetail/:id' component={Moviedetail} exact />
-          <Route path='/belitiket' component={Belitiket} exact/>
+          <Route path='/movieDetail/:id' component={Moviedetail} exact />
+          <Route path='/beliTiket' component={Belitiket} exact/>
+          <Route path='/register' component={register} exact/>
           <Route path={'/login'} exact component={Login}/>
         </Switch>
       </div>

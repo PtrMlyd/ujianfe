@@ -11,13 +11,24 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { lime } from '@material-ui/core/colors';
+// import Axios from 'axios';
+// import { APIURL } from '../support/ApiUrl';
+
+
+
 
 const Header = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  // const onSignOutClick=()=>localStorage.clear()
+    // Axios.get(`${APIURL}users?username=${username}&password=${password}`)
+    
+  
 
   return (
     <div>
@@ -53,7 +64,8 @@ const Header = (props) => {
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>
-                      Sign Out
+                      
+                      <Link to='/' onClick={()=>onSignOutClick()}>Sign Out</Link>
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
@@ -65,6 +77,13 @@ const Header = (props) => {
     </div>
   );
 }
+
+const onSignOutClick=()=>{
+  localStorage.clear()
+  window.location.reload()
+}
+    // Axios.get(`${APIURL}users?username=${username}&password=${password}`)
+
 const MapstateToprops=(state)=>{
   return{
       namauser:state.Auth.username

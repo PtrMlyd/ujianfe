@@ -19,7 +19,7 @@ class Login extends Component {
         Axios.get(`${APIURL}users?username=${username}&password=${password}`)
         .then(res=>{
             if(res.data.length){
-                localStorage.setItem('dino',res.data[0].id)
+                localStorage.setItem(`${username}`,res.data[0].id)
                 this.props.LoginSuccessAction(res.data[0])
             }else{
                 this.setState({error:'salah masukin pass woy'})

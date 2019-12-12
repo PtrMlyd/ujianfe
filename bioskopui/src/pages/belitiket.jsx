@@ -81,8 +81,10 @@ class Belitiket extends Component {
         var arr=[]
         for(let i=0;i<this.state.baris;i++){
             arr.push([])
+            // console.log(arr.push([]))
             for(let j=0;j<this.state.seats/this.state.baris;j++){
                 arr[i].push(1)
+                // console.log(arr[i].push(1))
             }
         }
         console.log(this.state.booked)
@@ -107,7 +109,7 @@ class Belitiket extends Component {
                                 )
                             }else if(val1===2){
                                 return(
-                                    <button key={i} onClick={()=>this.onCancelseatClick(index,i)}   className='rounded btn-order mr-2 mt-2 btn-pilih text-center'>
+                                    <button key={i} onClick={()=>this.onCancelseatClick(index,i)} className='rounded btn-order mr-2 mt-2 btn-pilih text-center'>
                                         {alphabet[index] +(i+1)}
                                     </button>
                                 )

@@ -4,3 +4,9 @@ export const LoginSuccessAction=(datauser)=>{
         payload:datauser
     }
 }
+// export const onRegisterSuccess=()=>{
+//     return{
+//         type:'REGISTER_SUCCESS',
+        
+//     }
+// }
