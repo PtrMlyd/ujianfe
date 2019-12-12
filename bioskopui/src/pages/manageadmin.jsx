@@ -274,7 +274,7 @@ class ManageAdmin extends Component {
                             <TableRow>
                                 <TableCell colSpan='10' style={{textAlign:"right"}}>
                                     <input className='mr-4 ' type="text" placeholder='Cari Film'/>
-                                    <button className='btn btn-success' onClick={()=>this.setState({modaladd:true})}> add Data</button>
+                                    <button className='btn btn-success' onClick={()=>this.setState({modaladd:true})}> Add Data</button>
                                 </TableCell>
                             </TableRow>
                             <TableRow>

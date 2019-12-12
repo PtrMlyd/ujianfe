@@ -47,7 +47,7 @@
       ],
       "trailer": "https://www.youtube.com/embed/z9CEIcmWmtA",
       "studioId": "1",
-      "id": 2
+      "id": 1
     },
     {
       "title": "Darah Daging",
@@ -63,8 +63,8 @@
         20
       ],
       "trailer": "https://www.youtube.com/embed/XG__1TjYjI4",
-      "studioId": "1",
-      "id": 3
+      "studioId": "3",
+      "id": 2
     },
     {
       "title": "Jumanji: The Next Level",
@@ -81,7 +81,7 @@
       ],
       "trailer": "https://www.youtube.com/embed/rBxcF-r9Ibs",
       "studioId": "1",
-      "id": 4
+      "id": 3
     }
   ],
   "orders": [
@@ -96,18 +96,57 @@
     {
       "userId": 3,
       "movieId": 3,
+      "totalHarga": 125000,
       "jadwal": 12,
-      "totalHarga": 50000,
-      "id": 2,
-      "bayar": false
+      "bayar": false,
+      "id": 2
     },
     {
-      "userId": 2,
+      "userId": 3,
+      "movieId": 1,
+      "totalHarga": 25000,
+      "jadwal": 12,
+      "bayar": false,
+      "id": 3
+    },
+    {
+      "userId": 3,
       "movieId": 3,
-      "jadwal": 14,
       "totalHarga": 50000,
-      "id": 3,
-      "bayar": false
+      "jadwal": 12,
+      "bayar": false,
+      "id": 4
+    },
+    {
+      "movieId": 3,
+      "totalHarga": 25000,
+      "jadwal": 12,
+      "bayar": false,
+      "id": 5
+    },
+    {
+      "userId": 3,
+      "movieId": 3,
+      "totalHarga": 75000,
+      "jadwal": 12,
+      "bayar": false,
+      "id": 6
+    },
+    {
+      "userId": 3,
+      "movieId": 3,
+      "totalHarga": 25000,
+      "jadwal": 12,
+      "bayar": false,
+      "id": 7
+    },
+    {
+      "userId": 3,
+      "movieId": 3,
+      "totalHarga": 125000,
+      "jadwal": 12,
+      "bayar": false,
+      "id": 8
     }
   ],
   "ordersDetails": [
@@ -118,34 +157,40 @@
       "seat": 4
     },
     {
-      "id": 2,
-      "orderId": 1,
-      "row": 2,
-      "seat": 5
+      "orderId": 7,
+      "seat": 6,
+      "row": 0,
+      "id": 2
     },
     {
-      "id": 3,
-      "orderId": 2,
-      "row": 2,
-      "seat": 6
+      "orderId": 8,
+      "seat": 8,
+      "row": 0,
+      "id": 3
     },
     {
-      "id": 4,
-      "orderId": 2,
-      "row": 2,
-      "seat": 7
+      "orderId": 8,
+      "seat": 8,
+      "row": 1,
+      "id": 4
     },
     {
-      "id": 5,
-      "orderId": 3,
-      "row": 2,
-      "seat": 8
+      "orderId": 8,
+      "seat": 9,
+      "row": 1,
+      "id": 5
     },
     {
-      "id": 6,
-      "orderId": 3,
-      "row": 2,
-      "seat": 9
+      "orderId": 8,
+      "seat": 9,
+      "row": 0,
+      "id": 6
+    },
+    {
+      "orderId": 8,
+      "seat": 11,
+      "row": 1,
+      "id": 7
     }
   ]
 }

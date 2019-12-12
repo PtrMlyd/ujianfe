@@ -33,7 +33,7 @@ const Header = (props) => {
   return (
     <div>
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">BIOSKOP JC-11</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto " navbar>
@@ -44,12 +44,6 @@ const Header = (props) => {
               <NavItem>
                 <Link to={'/login'} style={{textDecoration:"none",color:'#9a9da0'}}>Login</Link>
               </NavItem>
-            //   :
-            //   null
-            // }
-            //   {
-            //     props.namauser===''?
-            //     null
                 :
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
@@ -64,7 +58,6 @@ const Header = (props) => {
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>
-                      
                       <Link to='/' onClick={()=>onSignOutClick()}>Sign Out</Link>
                     </DropdownItem>
                   </DropdownMenu>
@@ -79,7 +72,7 @@ const Header = (props) => {
 }
 
 const onSignOutClick=()=>{
-  localStorage.clear()
+  localStorage.clear() // untuk hapus semua item yang ada di local storage
   window.location.reload()
 }
     // Axios.get(`${APIURL}users?username=${username}&password=${password}`)

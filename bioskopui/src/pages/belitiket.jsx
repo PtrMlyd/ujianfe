@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import Axios from 'axios'
 import { APIURL } from '../support/ApiUrl';
+//day 14
+import Numeral from 'numeral' // ini untuk timer, etc
+import {
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter
+} from 'reactstrap'
+import {Redirect} from 'react-router-dom'
 
 class Belitiket extends Component {
     state = {  
@@ -11,7 +20,12 @@ class Belitiket extends Component {
         booked:[],
         loading:true,
         jam:12,
-        pilihan:[]
+        pilihan:[],
+        //day 14
+        harga:0,
+        jumlahTiket:0,
+        openModal:false,
+        redirectHome:false
     }
 
     componentDidMount(){
@@ -60,8 +74,65 @@ class Belitiket extends Component {
 
     onPilihSeatClick=(row,seat)=>{
         var pilihan=this.state.pilihan
-        pilihan.push({row:row,seat})//seat:seat bisa juga ditulis begitu 
+        pilihan.push({row:row,seat})//<-seat:seat bisa juga ditulis begitu 
         this.setState({pilihan:pilihan})
+    }
+    //day 14
+    onOrderClick=()=>{
+        var userId=this.props.UserId
+        var movieId=this.state.datamovie.id
+        var pilihan=this.state.pilihan
+        var jadwal=this.state.jam
+        var totalHarga=this.state.pilihan.length*25000
+        var bayar=false
+        var dataOrders={
+            userId,
+            movieId,
+            totalHarga,
+            jadwal,
+            bayar
+        }
+        Axios.post(`${APIURL}orders`,dataOrders)
+        .then((res)=>{
+            console.log(res.data.id)
+            var dataOrdersDetail=[]
+            pilihan.forEach((val)=>{
+
+                console.log('Masuk Sini '+pilihan)
+                //untuk push data ke dalam array dataOrdersDetail
+                dataOrdersDetail.push({
+                    orderId:res.data.id,
+                    seat:val.seat,
+                    row:val.row
+                })
+            })
+            console.log(dataOrdersDetail)
+            var dataOrderDetail2=[] //lalu kita buat variable baru untuk menyimpan ke db.json
+            dataOrdersDetail.forEach((val)=>{ // lalu data yang telah kita push ke dataOrderDetail , kita buat kondisi dimana untuk nilai data orderdetail. kita gantikan/ push data orderdetail2 
+                dataOrderDetail2.push(Axios.post(`${APIURL}ordersDetails`,val))
+            })
+            
+            Axios.all(dataOrderDetail2)
+            .then((res1)=>{
+                console.log(res1)
+                this.setState({openModal:true})
+            }).catch((err1)=>{
+                console.log(err1)
+            })
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+    renderHargadanQuantity=()=>{
+        var jumlahTiket=this.state.pilihan.length
+        var harga=jumlahTiket*25000
+        // this.setState(harga)
+        return(
+            <div>
+                {jumlahTiket} Tiket X {`Rp ${Numeral(25000).format('0.00')}`}={`Rp. ${Numeral(harga).format(`0.00`)}`}
+            </div>
+        )
+        
     }
     
     onCancelseatClick=(row,seat)=>{
@@ -88,8 +159,8 @@ class Belitiket extends Component {
             }
         }
         console.log(this.state.booked)
-        for(let j=0;j<this.state.booked.length;j++){
-            arr[this.state.booked[j].row][this.state.booked[j].seat]=3
+        for(let k =0;k <this.state.booked.length;k ++){
+            arr[this.state.booked[k ].row][this.state.booked[k ].seat]=3
         }
         
         for(let a=0;a<this.state.pilihan.length;a++){
@@ -140,13 +211,31 @@ class Belitiket extends Component {
     }
     render(){
         if(this.props.location.state &&this.props.AuthLog){
+            if(this.state.redirectHome){
+                return <Redirect to={'/'}/>
+            }
             return (
                 <div>
+                    <Modal isOpen={this.state.openModal}>
+                        <ModalBody>
+                            cart Berhasil Ditamabh
+                        </ModalBody>
+                        <ModalFooter>
+                            <button onClick={()=>this.setState({redirectHome:true})}>OK</button>
+                        </ModalFooter>
+                    </Modal>
                     <center className='mt-1'>
+                        <h1>{this.state.datamovie.title}</h1> <br/>
                         {this.state.loading?null:this.renderbutton()}
                         <div>
-                            {this.state.pilihan.length?<button className='btn btn-primary mt-3'>Order</button> :null}
+                            {this.state.pilihan.length?<button onClick={this.onOrderClick} className='btn btn-primary mt-3'>Order</button> :null}
                         </div>
+                        {
+                            this.state.pilihan.length?
+                            this.renderHargadanQuantity()
+                            :
+                            null
+                        }
                     </center>
                     <div className="d-flex justify-content-center mt-4">
                         <div>
@@ -166,7 +255,9 @@ class Belitiket extends Component {
 
 const MapstateToprops=(state)=>{
     return{
-        AuthLog:state.Auth.login
+        AuthLog:state.Auth.login,
+        //mengambil ID
+        UserId:state.Auth.id
     }
 }
 export default connect(MapstateToprops) (Belitiket);
