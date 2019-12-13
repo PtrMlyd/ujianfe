@@ -123,6 +123,11 @@ class Belitiket extends Component {
             console.log(err)
         })
     }
+
+    onResetSeatClick=()=>{
+
+    }
+
     renderHargadanQuantity=()=>{
         var jumlahTiket=this.state.pilihan.length
         var harga=jumlahTiket*25000
@@ -201,7 +206,8 @@ class Belitiket extends Component {
         return this.state.datamovie.jadwal.map((val,index)=>{
             if(this.state.jam===val){
                 return(
-                    <button className='mx-2 btn btn-outline-primary' disabled>{val}.00</button>
+
+                    <button className='mx-2 btn btn-outline-primary' disabled>{val}.00</button>  
                 )
             }
             return(
@@ -218,17 +224,20 @@ class Belitiket extends Component {
                 <div>
                     <Modal isOpen={this.state.openModal}>
                         <ModalBody>
-                            cart Berhasil Ditamabh
+                            Successfully Added to your Cart
                         </ModalBody>
                         <ModalFooter>
-                            <button onClick={()=>this.setState({redirectHome:true})}>OK</button>
+                            <button onClick={()=>this.setState({redirectHome:true})} className='btn btn-outline-primary'>OK</button>
                         </ModalFooter>
                     </Modal>
                     <center className='mt-1'>
+                        <h2>Order Seat</h2> <br/>
                         <h1>{this.state.datamovie.title}</h1> <br/>
-                        {this.state.loading?null:this.renderbutton()}
+                        {this.state.loading?null:this.renderbutton()} <br/><br/>
                         <div>
-                            {this.state.pilihan.length?<button onClick={this.onOrderClick} className='btn btn-primary mt-3'>Order</button> :null}
+                            {this.state.pilihan.length?<button className='btn btn-primary mr-4' onClick={this.onOrderClick} >Order</button> :null}
+                            <button className='btn btn-danger'> Reset</button> <br/><br/>
+                            
                         </div>
                         {
                             this.state.pilihan.length?

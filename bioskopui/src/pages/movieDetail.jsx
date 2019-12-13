@@ -24,6 +24,7 @@ class MovieDetail extends Component {
     }
 
     onBeliTiketClick=()=>{
+        console.log('ini di click')
         if(this.props.AuthLog){
             this.setState({belitiketok:true})
         }else{
@@ -49,12 +50,13 @@ class MovieDetail extends Component {
                         </iframe>
                     </ModalBody>
                 </Modal>
-                <Modal isOpen={this.state.notloginyet} centered toggle={()=>this.setState({notloginyet:false})}>
+                <Modal isOpen={this.state.notloginyet} centered>
                     <ModalBody>
-                        anda belum login tidak bisa lanjut, kalo mau lanjut login aja dulu
+                        <h5>You need Login First</h5>
                     </ModalBody>
                     <ModalFooter>
-                        <button onClick={()=>this.setState({kelogin:true})}>Ok</button>
+                        <button className='btn btn-outline-danger' onClick={()=>this.setState({notloginyet:false})}>Cancel</button>
+                        <button className='btn btn-outline-primary' onClick={()=>this.setState({kelogin:true})}>Login</button>
                     </ModalFooter>
                 </Modal>
                 <div className="row p-3 mx-3 my-4">

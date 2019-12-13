@@ -7,6 +7,7 @@ import ManageAdmin from './pages/manageAdmin'
 import Login from './pages/login'
 import Moviedetail from './pages/movieDetail'
 import Belitiket from './pages/beliTiket'
+import cart from './pages/cart'
 import register from './pages/register'
 import {connect} from 'react-redux'
 import {LoginSuccessAction} from './redux/actions'
@@ -48,6 +49,8 @@ class App extends Component{
             <ManageAdmin/>
           </Route>          
           <Route path='/movieDetail/:id' component={Moviedetail} exact />
+          {/* day 15 */}
+          <Route path='/cart' component={cart} exact/>
           <Route path='/beliTiket' component={Belitiket} exact/>
           <Route path='/register' component={register} exact/>
           <Route path={'/login'} exact component={Login}/>
