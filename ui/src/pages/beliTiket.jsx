@@ -10,7 +10,7 @@ import {
     ModalBody,
     ModalFooter
 } from 'reactstrap'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom';
 
 class Belitiket extends Component {
     state = {  
@@ -25,11 +25,22 @@ class Belitiket extends Component {
         harga:0,
         jumlahTiket:0,
         openModal:false,
+        deleteModal:false,
         redirectHome:false
     }
 
     componentDidMount(){
-        this.onJamchange()
+        if(this.props.location.state!==undefined){
+            this.onJamchange()
+        // }else{
+        //     Axios.get(`${APIURL}movies`)
+        //     .then((res)=>{
+        //         this.setState({datamovies:res.data})
+        //     })
+        //     .catch((err)=>{
+        //         console.log(err)
+        //     })
+        }
     }
     onJamchange=()=>{
         var studioId=this.props.location.state.studioId
@@ -125,7 +136,7 @@ class Belitiket extends Component {
     }
 
     onResetSeatClick=()=>{
-
+        
     }
 
     renderHargadanQuantity=()=>{
@@ -163,7 +174,6 @@ class Belitiket extends Component {
                 // console.log(arr[i].push(1))
             }
         }
-        console.log(this.state.booked)
         for(let k =0;k <this.state.booked.length;k ++){
             arr[this.state.booked[k ].row][this.state.booked[k ].seat]=3
         }
@@ -171,6 +181,7 @@ class Belitiket extends Component {
         for(let a=0;a<this.state.pilihan.length;a++){
             arr[this.state.pilihan[a].row][this.state.pilihan[a].seat]=2
         }
+        console.log(this.state.booked)
         var alphabet='abcdefghijklmnopqrstuvwxyz'.toUpperCase()
         var jsx=arr.map((val,index)=>{
             return(
@@ -217,17 +228,28 @@ class Belitiket extends Component {
     }
     render(){
         if(this.props.location.state &&this.props.AuthLog){
-            if(this.state.redirectHome){
-                return <Redirect to={'/'}/>
+            if(this.props.userId){
+                if(this.state.redirectHome){
+                    return <Redirect to={'/'}/>
+                }
             }
             return (
                 <div>
-                    <Modal isOpen={this.state.openModal}>
+                    <Modal isOpen={this.state.openModal} center>
                         <ModalBody>
                             Successfully Added to your Cart
                         </ModalBody>
                         <ModalFooter>
-                            <button onClick={()=>this.setState({redirectHome:true})} className='btn btn-outline-primary'>OK</button>
+                            <button onClick={()=>this.setState({redirectHome:true, openModal:false})} className='btn btn-outline-primary'>OK</button>
+                        </ModalFooter>
+                    </Modal>
+                    <Modal isOpen={this.state.deleteModal}>
+                        <ModalBody>
+                            Are You Sure ? 
+                        </ModalBody>
+                        <ModalFooter>
+                            <button className="btn btn-primary" onClick={this.onResetSeatClick}> OK </button>
+                            <button className="btn btn-danger" onClick={()=>this.setState({deleteModal:false})}> Cancel </button>
                         </ModalFooter>
                     </Modal>
                     <center className='mt-1'>
@@ -236,8 +258,8 @@ class Belitiket extends Component {
                         {this.state.loading?null:this.renderbutton()} <br/><br/>
                         <div>
                             {this.state.pilihan.length?<button className='btn btn-primary mr-4' onClick={this.onOrderClick} >Order</button> :null}
-                            <button className='btn btn-danger'> Reset</button> <br/><br/>
-                            
+                            <button className='btn btn-danger'onClick={()=>this.setState({deleteModal:true})}> Reset</button> <br/><br/>
+                                 
                         </div>
                         {
                             this.state.pilihan.length?
@@ -246,13 +268,13 @@ class Belitiket extends Component {
                             null
                         }
                     </center>
-                    <div className="d-flex justify-content-center mt-4">
+                    <div className="d-flex justify-content-center mt-4 mb-5 pb-4">
                         <div>
                             {this.state.loading?null:this.renderseat()} 
                         </div>
                     </div>
                 </div>
-              );
+            );
         }
         return(
             <div>
@@ -267,6 +289,7 @@ const MapstateToprops=(state)=>{
         AuthLog:state.Auth.login,
         //mengambil ID
         UserId:state.Auth.id
+
     }
 }
 export default connect(MapstateToprops) (Belitiket);

@@ -81,41 +81,76 @@ class Login extends Component {
             // </div>
 
             //MENGGUNAKAN REDUX THUNK
-            <div>
-                <div className=' mt-3 d-flex justify-content-center'>
-                    <div style={{width:'500px',border:'1px solid black'}} className='rounded p-2'>
-                        <h1>Login</h1>
-                        <div className='p-1' style={{borderBottom:'1px solid black'}}>
-                            <input type="text" className='username' style={{border:'transparent',width:'100%',fontSize:'20px'}} ref='username' placeholder='username bro'/>
-                        </div>
-                        <div className='p-1' style={{borderBottom:'1px solid black'}}>
-                            <input type="password" className='username' style={{border:'transparent',width:'100%',fontSize:'20px'}} ref='password' placeholder='pass bro'/>
-                        </div>
-                        {this.props.Auth.error===''?
-                            null
-                            :
-                            <div className="alert alert-danger mt-2">
-                                {this.props.Auth.error} <span onClick={this.props.LOGIN_ERROR} className='float-right font-weight-bold'>X</span>
-                            </div>
+            // <div>
+            //     <div className=' mt-3 d-flex justify-content-center'>
+            //         <div style={{width:'500px',border:'1px solid black'}} className='rounded p-2'>
+            //             <h1>Login</h1>
+            //             <div className='p-1' style={{borderBottom:'1px solid black'}}>
+            //                 <input type="text" className='username' style={{border:'transparent',width:'100%',fontSize:'20px'}} ref='username' placeholder='username bro'/>
+            //             </div>
+            //             <div className='p-1' style={{borderBottom:'1px solid black'}}>
+            //                 <input type="password" className='username' style={{border:'transparent',width:'100%',fontSize:'20px'}} placeholder='pass bro'/>
+            //             </div>
+            //             {this.props.Auth.error===''?
+            //                 null
+            //                 :
+            //                 <div className="alert alert-danger mt-2">
+            //                     {this.props.Auth.error} <span onClick={this.props.LOGIN_ERROR} className='float-right font-weight-bold'>X</span>
+            //                 </div>
                     
-                        }
-                        <div className='mt-4'>
-                            {this.props.Auth.loading?
-                                <Loader
-                                    type="Puff"
-                                    color="#00BFFF"
-                                    height={100}
-                                    width={100}
-                                />
-                                :
-                                <button className='btn btn-primary' onClick={this.onLoginClick}>Login</button>
-                            }
-                        </div>
-                        <div className='mt-2'>
-                            belum ada akun ?<Link> Register </Link> aja mbak/mas
-                        </div>
-                    </div>
+            //             }
+            //             <div className='mt-4'>
+            //                 {this.props.Auth.loading?
+            //                     <Loader
+            //                         type="Puff"
+            //                         color="#00BFFF"
+            //                         height={100}
+            //                         width={100}
+            //                     />
+            //                     :
+            //                     <button className='btn btn-primary' onClick={this.onLoginClick}>Login</button>
+            //                 }
+            //             </div>
+            //             <div className='mt-2'>
+            //                 belum ada akun ?<Link> Register </Link> aja mbak/mas
+            //             </div>
+            //         </div>
+            //     </div>
+            // </div>
+
+            <div className="mx-5 mt-4">
+                <form>
+                <h1 className="text-center">LOGIN</h1>       
+                <div className="pt-3 px-5">
+                    <input type="text" ref='username' className="form-control" placeholder="Username" required="required" />
                 </div>
+                <div className="pt-3 px-5">
+                    <input type="password"  ref='password' className="form-control" placeholder="Password" required="required" />
+                </div>
+                <div className="pt-3 px-5">
+                {
+                    this.props.Auth.loading?
+                    <Loader
+                        type="Puff"
+                        color="#00BFFF"
+                        height={100}
+                        width={100}
+                    />
+                    :
+                    <button type="submit" className="btn btn-primary btn-block btn-lg" onClick={this.onLoginClick}>Login</button>
+                }
+                </div>
+                {
+                    this.props.Auth.error===''?
+                    null
+                    :
+                    <div className="alert alert-danger mx-5 my-3">
+                        {this.props.Auth.error} <span onClick={this.props.LOGIN_ERROR} className='float-right font-weight-bold'>X</span>
+                    </div>
+            
+                }       
+                </form>
+                <p className="text-center"> I Don't have an Account. <Link to={'/register'}>Create an Account </Link></p>
             </div>
           );
     }
@@ -125,7 +160,6 @@ const MapstateToprops=(state)=>{
     return{
         AuthLog:state.Auth.login,
         Auth:state.Auth
-
     }
 }
 

@@ -4,7 +4,8 @@ const INITIAL_STATE={
     password:'',
     login:false,
     error:'',
-    loading:false
+    loading:false,
+    logout:false
 }
 
 export default (state=INITIAL_STATE,action)=>{
@@ -15,6 +16,8 @@ export default (state=INITIAL_STATE,action)=>{
             return{...state, loading:true, error:''}
         case 'LOGIN_ERROR':
             return{...state, error:action.payload, loading:false}
+        case 'LOGOUT_SUCCESS' :
+            return INITIAL_STATE
         default:
             return state
     }

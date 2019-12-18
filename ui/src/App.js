@@ -8,9 +8,11 @@ import Login from './pages/login'
 import Moviedetail from './pages/movieDetail'
 import Belitiket from './pages/beliTiket'
 import cart from './pages/cart'
+import manageStudio from './pages/manageStudio'
+import History from './pages/history'
 import register from './pages/register'
 import {connect} from 'react-redux'
-import {LoginSuccessAction} from './redux/actions'
+import {LoginSuccessAction, logoutSuccessAction} from './redux/actions'
 import Axios from 'axios';
 import { APIURL } from './support/ApiUrl';
 
@@ -21,6 +23,7 @@ class App extends Component{
   }
 
   componentDidMount(){
+
     var id=localStorage.getItem('dino')
     Axios.get(`${APIURL}users/${id}`)
     .then((res)=>{
@@ -52,6 +55,8 @@ class App extends Component{
           {/* day 15 */}
           <Route path='/cart' component={cart} exact/>
           <Route path='/beliTiket' component={Belitiket} exact/>
+          <Route path='/manageStudio' component={manageStudio} exact/>
+          <Route path='/history' component={History} exact/>
           <Route path='/register' component={register} exact/>
           <Route path={'/login'} exact component={Login}/>
         </Switch>
@@ -66,4 +71,4 @@ const MapstateToprops=(state)=>{
   }
 }
 
-export default connect(MapstateToprops,{LoginSuccessAction})(App);
+export default connect(MapstateToprops,{LoginSuccessAction, logoutSuccessAction})(App);

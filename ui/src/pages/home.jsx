@@ -7,6 +7,7 @@ const url='http://localhost:2001/'
 class Home extends Component {
     state = {
         dataMovies:[]
+
     }
     componentDidMount(){
         Axios.get(`${url}movies`)

@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "123",
+      "role": "1"
+    },
+    {
+      "id": 2,
+      "username": "dobleh",
+      "password": "qwe",
+      "role": "2"
+    },
+    {
+      "id": 3,
+      "username": "jamal",
+      "password": "1234",
+      "role": "2"
+    }
+  ],
+  "studios": [
+    {
+      "nama": "Studio 2",
+      "jumlahKursi": "100",
+      "id": 1
+    },
+    {
+      "nama": "Studio 1",
+      "jumlahKursi": "90",
+      "id": 2
+    }
+  ],
+  "movies": [],
+  "orders": [],
+  "ordersDetails": [],
+  "transaction": [],
+  "transactionDetails": []
+}
